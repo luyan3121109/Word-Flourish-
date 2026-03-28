@@ -1,0 +1,133 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  
+  --color-brand-black: #1A1A1A;
+  --color-brand-white: #FDFCF8;
+  --color-brand-accent: #FF5C00; /* Bold Orange */
+  --color-brand-secondary: #00E0FF; /* Cyan */
+  --color-brand-muted: #E5E5E5;
+
+  /* Candy Colors */
+  --color-candy-pink: #FFB7B7;
+  --color-candy-mint: #B5FFD9;
+  --color-candy-lavender: #D9B5FF;
+  --color-candy-sky: #B5E5FF;
+  --color-candy-peach: #FFD9B5;
+  --color-candy-yellow: #FFF587;
+}
+
+@layer base {
+  body {
+    @apply bg-brand-white text-brand-black font-sans selection:bg-brand-accent selection:text-white overflow-x-hidden;
+    background-image: radial-gradient(#1A1A1A 0.5px, transparent 0.5px);
+    background-size: 24px 24px;
+    background-color: #FDFCF8;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display font-black tracking-tighter leading-tight;
+  }
+}
+
+/* Cute / Candy Accents */
+.candy-shadow {
+  @apply shadow-[6px_6px_0px_0px_rgba(0,0,0,1)];
+}
+
+.candy-button {
+  @apply border-[3px] border-brand-black font-black uppercase tracking-widest px-4 py-3 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all text-sm rounded-2xl;
+}
+
+.candy-card {
+  @apply border-[3px] border-brand-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all rounded-3xl overflow-hidden;
+}
+
+/* Doodle / Graffiti Accents */
+.doodle-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.doodle-underline::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background: url("data:image/svg+xml,%3Csvg width='100' height='10' viewBox='0 0 100 10' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 5 Q 25 0, 50 5 T 100 5' stroke='%23FF5C00' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.doodle-circle {
+  position: relative;
+}
+
+.doodle-circle::before {
+  content: "";
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 120%;
+  height: 120%;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10,50 Q10,10 50,10 T90,50 T50,90 T10,50' stroke='%2300E0FF' stroke-width='2' fill='none' stroke-dasharray='5,5'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: -1;
+}
+
+.brutalist-card {
+  @apply border-[3px] border-brand-black shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] transition-all active:translate-x-[1px] active:translate-y-[1px] active:shadow-[2px_2px_0px_0px_rgba(26,26,26,1)];
+}
+
+.brutalist-button {
+  @apply bg-brand-accent text-white border-[3px] border-brand-black font-black uppercase tracking-widest px-4 py-3 shadow-[3px_3px_0px_0px_rgba(26,26,26,1)] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all text-sm;
+}
+
+.brutalist-input {
+  @apply bg-white border-[3px] border-brand-black p-3 font-bold focus:outline-none focus:ring-4 focus:ring-brand-secondary/20 text-base rounded-xl;
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(3deg); }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+
+.animate-wiggle {
+  animation: wiggle 0.5s ease-in-out infinite;
+}
+
+@keyframes pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.animate-pop {
+  animation: pop 0.3s ease-in-out;
+}
+
+/* Mobile Specific Tweaks */
+@media (max-width: 640px) {
+  .brutalist-card {
+    @apply shadow-[3px_3px_0px_0px_rgba(26,26,26,1)];
+  }
+  
+  h1 { @apply text-2xl; }
+  h2 { @apply text-xl; }
+}
